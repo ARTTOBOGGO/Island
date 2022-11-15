@@ -8,23 +8,24 @@ import com.javarush.island.bogdanov.Farm.*;
 import java.util.*;
 import java.util.concurrent.Callable;
 
-public class Cell implements Callable<Cell> {
+public class Cell implements Runnable{
     private int row;
-    private int col;
+    private int coll;
     private Names[] values = Names.values();
-    private Map<String, List<Organizm>> contentCell;
+    private List<Organizm> contentCell;
 
     public Cell(int row, int col) {
         this.row = row;
-        this.col = col;
-        contentCell = new HashMap<>();
+        this.coll = col;
+        contentCell = new LinkedList<>();
+        this.initialize();
     }
 
 
 
 
 
-    public Map<String, List<Organizm>> getContentCell() {
+    public List<Organizm> getContentCell() {
         return contentCell;
     }
 
@@ -37,21 +38,33 @@ public class Cell implements Callable<Cell> {
             List<Organizm> organizms = new ArrayList<>();
             for (double i = 0; i < countAnimalOnOneCell; i++) {
                 Organizm organizm = Farm.copyOrganizm.get(value.getName());
-                organizms.add(organizm);
+                contentCell.add(organizm);
             }
-            contentCell.put(value.getName(),organizms);
+
         }
 
-
     }
-
 
     @Override
-    public Cell call() {
-//        System.out.println(Thread.currentThread().getName());
-        this.initialize();
+    public void run() {
 
-
-        return this;
+        this.move();
     }
+    private void move() {
+        for (Organizm organizm : this.contentCell) {
+            organizm.move();
+        }
+    }
+
+    public int getRow() {
+        return row;
+    }
+
+
+    public int getColl() {
+        return coll;
+    }
+
+
+
 }

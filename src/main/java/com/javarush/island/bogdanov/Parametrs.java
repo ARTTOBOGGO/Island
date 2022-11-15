@@ -6,8 +6,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Parametrs {
-    public static final int WIDTH=100;
-    public static final int HEIGHT=20;
+    public static final int WIDTH=5;
+    public static final int HEIGHT=2;
 
     public static Map<String, ArrayList<Double>> fields = new HashMap<>();
     public static Map<String, String> names = new HashMap<>();

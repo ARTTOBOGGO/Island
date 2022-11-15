@@ -6,6 +6,6 @@ import com.javarush.island.bogdanov.predator.Wolf;
 public class Runner {
     public static void main(String[] args) {
         GameField gameField = new GameField();
-        gameField.print();
+//        gameField.makeStep();
     }
 }

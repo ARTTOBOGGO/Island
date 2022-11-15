@@ -12,26 +12,32 @@ public class GameField
 
     public GameField() {
         this.initialize();
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        this.move();
     }
 
-    Cell[][] gameField = new Cell[Parametrs.WIDTH][Parametrs.HEIGHT];
+    private  static Cell[][] gameField = new Cell[Parametrs.WIDTH][Parametrs.HEIGHT];
     ExecutorService executorService = Executors.newFixedThreadPool(8);
 
     public void initialize(){
         for (int i = 0; i < gameField.length; i++) {
             for (int j = 0; j < gameField[0].length; j++) {
-                Future<Cell> submit = executorService.submit(new Cell(i, j));
-                try {
-                    gameField[i][j] =submit.get();
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                } catch (ExecutionException e) {
-                    throw new RuntimeException(e);
-                }
+//                Future<Cell> submit = executorService.submit(new Cell(i, j));
+//                try {
+                    gameField[i][j] =new Cell(i, j);
+//                } catch (InterruptedException e) {
+//                    throw new RuntimeException(e);
+//                } catch (ExecutionException e) {
+//                    throw new RuntimeException(e);
+//                }
+
             }
         }
 
-        executorService.shutdown();
 
     }
     public void print(){
@@ -47,9 +53,18 @@ public class GameField
             }
         }
     }
-    public void makeStep(){
-
+    public void move(){
+        for (Cell[] cells : gameField) {
+            for (Cell cell : cells) {
+                executorService.execute(cell);
+            }
+        }
     }
+
+    public static Cell[][] getGameField() {
+        return gameField;
+    }
+
     public void printState(){
 
     }
