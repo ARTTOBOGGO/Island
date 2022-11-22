@@ -2,6 +2,7 @@ package com.javarush.island.bogdanov;
 
 import com.javarush.island.bogdanov.Cell;
 import com.javarush.island.bogdanov.Parametrs;
+import com.javarush.island.bogdanov.predator.Wolf;
 
 import java.util.Arrays;
 import java.util.concurrent.*;
@@ -11,57 +12,64 @@ public class GameField
 
 
     public GameField() {
-        this.initialize();
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-        this.move();
+//        this.initialize();
+//        try {
+//            Thread.sleep(4000);
+//        } catch (InterruptedException e) {
+//            throw new RuntimeException(e);
+//        }
+//        this.move();
     }
 
-    private  static Cell[][] gameField = new Cell[Parametrs.WIDTH][Parametrs.HEIGHT];
-    ExecutorService executorService = Executors.newFixedThreadPool(8);
+    public Cell[][] gameField = new Cell[Parametrs.HEIGHT][Parametrs.WIDTH];
+//    ExecutorService executorService = Executors.newFixedThreadPool(1);
 
-    public void initialize(){
-        for (int i = 0; i < gameField.length; i++) {
-            for (int j = 0; j < gameField[0].length; j++) {
-//                Future<Cell> submit = executorService.submit(new Cell(i, j));
-//                try {
-                    gameField[i][j] =new Cell(i, j);
-//                } catch (InterruptedException e) {
-//                    throw new RuntimeException(e);
-//                } catch (ExecutionException e) {
-//                    throw new RuntimeException(e);
+//    public void initialize(){
+//        for (int i = 0; i < Parametrs.HEIGHT; i++) {
+//            for (int j = 0; j < Parametrs.WIDTH; j++) {
+////                Future<Cell> submit = executorService.submit(new Cell(i, j));
+////                try {
+//                Cell cell = new Cell(i, j);
+//                cell.initialize();
+//                gameField[i][j]=cell;
+////                } catch (InterruptedException e) {
+////                    throw new RuntimeException(e);
+////                } catch (ExecutionException e) {
+////                    throw new RuntimeException(e);
+////                }
+//
+//            }
+//        }
+//
+//
+//    }
+//    public void print(){
+//        int all=0;
+//        for (Cell[] cells : gameField) {
+//
+//            for (Cell cell : cells) {
+//                int count=0;
+//                for (Organizm organizm : cell.getContentCell()) {
+//                    count++;
 //                }
+//
+//                System.out.println(count+"="+cell.getRow()+"++"+cell.getColl());
+//
+//            }
+//
+//        }
+//
+//    }
+//    public void move(){
+//        for (int i = 0; i < gameField.length; i++) {
+//            for (int j = 0; j < gameField[i].length; j++) {
+//                executorService.execute(gameField[i][j]);
+//            }
+//        }
+//
+//    }
 
-            }
-        }
-
-
-    }
-    public void print(){
-        for (Cell[] cells : gameField) {
-            for (Cell cell : cells) {
-                System.out.println(cell.getContentCell());
-//                System.out.println("---------------------------------------------------------------------------------");
-//                try {
-//                    Thread.sleep(1000);
-//                } catch (InterruptedException e) {
-//                    throw new RuntimeException(e);
-//                }
-            }
-        }
-    }
-    public void move(){
-        for (Cell[] cells : gameField) {
-            for (Cell cell : cells) {
-                executorService.execute(cell);
-            }
-        }
-    }
-
-    public static Cell[][] getGameField() {
+    public Cell[][] getGameField() {
         return gameField;
     }
 

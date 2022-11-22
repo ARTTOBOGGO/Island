@@ -5,8 +5,8 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public abstract class Animal extends Organizm{
 
-    public String name = Parametrs.names.get(this.getClass().getSimpleName());
-    private double speed;
+    public String name = this.getClass().getSimpleName();
+    public double speed;
     private Double weight;
     private Double maxWeightFood;
     private Double maxCount;
@@ -27,6 +27,7 @@ public abstract class Animal extends Organizm{
         this.icon = Parametrs.icons.get(this.getClass().getSimpleName());
 
 
+
     }
 
     @Override
@@ -38,15 +39,31 @@ public abstract class Animal extends Organizm{
 
 
     }
-    public void move(){
-        rowStep = ThreadLocalRandom.current().nextInt(0,(int)speed);
-        collStep = ThreadLocalRandom.current().nextInt(0,(int)speed);
-        collNow = getCell().getColl();//TODO 1
-        rowNow = getCell().getRow();
-        Cell[][] gameField = GameField.getGameField();
-        if(this.rowNow+this.rowStep<100 && this.collNow+this.collStep<100) {
-            gameField[this.rowNow + this.rowStep][this.collNow + this.collStep].getContentCell().add(this);
-            gameField[this.rowNow][this.collNow].getContentCell().remove(this);
+//    public void move(){
+//        System.out.println("move"+this.name);
+//        rowStep = ThreadLocalRandom.current().nextInt(0, (int) speed);
+//        collStep = ThreadLocalRandom.current().nextInt(0, (int) speed);
+//        if((rowStep>=Parametrs.HEIGHT && collStep>=Parametrs.WIDTH)||(rowStep<0&&collStep<0)){
+//            rowStep=0;
+//            collStep=0;
+//        }
+//
+//    }
+
+    @Override
+    public void eat(Organizm food) {
+        String nameClass = food.getName();
+//        System.out.println("eat"+this.name);
+        String name1 = this.name;
+        Double weightFood=Parametrs.fields.get(nameClass).get(0);
+        Double aDouble = Parametrs.getFields().get(name1).get(3);
+        if(weightFood< aDouble){
+            weight=+weightFood;
+            if(weight> aDouble){
+
+            }
+        }else {
+            weight=Parametrs.getFields().get(nameClass).get(0);
         }
     }
 
@@ -58,5 +75,9 @@ public abstract class Animal extends Organizm{
     @Override
     public void setCell(Cell cell) {
         this.cell = cell;
+    }
+
+    public String getName() {
+        return name;
     }
 }

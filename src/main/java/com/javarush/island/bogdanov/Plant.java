@@ -1,6 +1,7 @@
 package com.javarush.island.bogdanov;
 
 public class Plant extends Organizm{
+    private String name = this.getClass().getSimpleName();
     public Plant() {
 
     }
@@ -9,4 +10,8 @@ public class Plant extends Organizm{
 
     }
 
+    @Override
+    public String getName() {
+        return name;
+    }
 }

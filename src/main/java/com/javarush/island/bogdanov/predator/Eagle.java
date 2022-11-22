@@ -1,11 +1,17 @@
 package com.javarush.island.bogdanov.predator;
 
+import com.javarush.island.bogdanov.Organizm;
+import com.javarush.island.bogdanov.Parametrs;
 import com.javarush.island.bogdanov.herbivore.Herbivore;
 
 public class Eagle extends Predator{
-    @Override
-    public void eat(Herbivore herbivore) {
+    public Eagle() {
+        super();
+    }
 
+    @Override
+    public void eat(Organizm food) {
+        super.eat(food);
     }
 
     @Override

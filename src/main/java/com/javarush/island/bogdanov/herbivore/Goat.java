@@ -1,15 +1,20 @@
 package com.javarush.island.bogdanov.herbivore;
 
+import com.javarush.island.bogdanov.Organizm;
+import com.javarush.island.bogdanov.Parametrs;
 import com.javarush.island.bogdanov.Plant;
 
 public class Goat extends Herbivore{
-    @Override
-    public void eat(Plant plant) {
 
+    @Override
+    public void eat(Organizm food) {
+        super.eat(food);
     }
 
     @Override
     public String toString() {
         return "Goat{" + "name='" + name + '\'' + ", icon='" + icon + '\'' + '}';
     }
+
+
 }

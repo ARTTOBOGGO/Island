@@ -6,17 +6,21 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Parametrs {
-    public static final int WIDTH=5;
-    public static final int HEIGHT=2;
+    public static final int WIDTH=100;
+    public static final int HEIGHT=20;
 
     public static Map<String, ArrayList<Double>> fields = new HashMap<>();
     public static Map<String, String> names = new HashMap<>();
     public static Map<String, String> icons = new HashMap<String, String>();
 
-    public static Map<String, ArrayList<Double>> getFields() {
-        return fields;
-    }
+
     public static int[][] eatChange = new int[Names.values().length][Names.values().length];
+
+    public static ArrayList<Names> getHerbivores() {
+        return herbivores;
+    }
+
+    private  static ArrayList<Names> herbivores = new ArrayList<>(Arrays.asList(Names.BUFFALO,Names.BOAR,Names.CATERPILLAR,Names.DEER,Names.DUCK,Names.GOAT,Names.HORSE,Names.MOUSE,Names.RABBIT,Names.SHEEP));
 
     static {
         eatChange[Names.WOLF.ordinal()][Names.HORSE.ordinal()]=10;
@@ -92,22 +96,22 @@ public class Parametrs {
     }
 
     static {
-        fields.put(Names.WOLF.getName(), new ArrayList<>(Arrays.asList(50.0,30.0,3.0,8.0)));
-        fields.put(Names.BEAR.getName(), new ArrayList<>(Arrays.asList(500d,5d,2d,80d)));
-        fields.put(Names.FOX.getName(), new ArrayList<>(Arrays.asList(8d,30d,2d,2d)));
-        fields.put(Names.BOA.getName(), new ArrayList<>(Arrays.asList(15d,30d,1d,3d)));
-        fields.put(Names.EAGLE.getName(), new ArrayList<>(Arrays.asList(6d,20d,3d,1d)));
-        fields.put(Names.HORSE.getName(), new ArrayList<>(Arrays.asList(400d,20d,4d,60d)));
-        fields.put(Names.DEER.getName(), new ArrayList<>(Arrays.asList(300d,20d,4d,50d)));
-        fields.put(Names.RABBIT.getName(), new ArrayList<>(Arrays.asList(2d,150d,2d,0.45)));
-        fields.put(Names.MOUSE.getName(), new ArrayList<>(Arrays.asList(0.05,500d,1d,0.01)));
-        fields.put(Names.GOAT.getName(), new ArrayList<>(Arrays.asList(60d,140d,3d,10d)));
-        fields.put(Names.SHEEP.getName(), new ArrayList<>(Arrays.asList(70d,140d,3d,15d)));
-        fields.put(Names.BOAR.getName(), new ArrayList<>(Arrays.asList(400d,50d,2d,50d)));
-        fields.put(Names.BUFFALO.getName(), new ArrayList<>(Arrays.asList(700d,10d,3d,100d)));
-        fields.put(Names.DUCK.getName(), new ArrayList<>(Arrays.asList(1d,200d,4d,0.15)));
-        fields.put(Names.CATERPILLAR.getName(), new ArrayList<>(Arrays.asList(0.01,1000d,0d,0d)));
-        fields.put(Names.PLANT.getName(), new ArrayList<>(Arrays.asList(1d,200d,null,null)));
+        fields.put(Names.WOLF.getName(), new ArrayList<>(Arrays.asList(50.0,1.0,3.0,8.0)));//30
+        fields.put(Names.BEAR.getName(), new ArrayList<>(Arrays.asList(500d,5d,2d,80d)));//5
+        fields.put(Names.FOX.getName(), new ArrayList<>(Arrays.asList(8d,3d,2d,2d)));//30
+        fields.put(Names.BOA.getName(), new ArrayList<>(Arrays.asList(15d,3d,1d,3d)));//30
+        fields.put(Names.EAGLE.getName(), new ArrayList<>(Arrays.asList(6d,2d,3d,1d)));//20
+        fields.put(Names.HORSE.getName(), new ArrayList<>(Arrays.asList(400d,2d,4d,60d)));//20
+        fields.put(Names.DEER.getName(), new ArrayList<>(Arrays.asList(300d,2d,4d,50d)));//20
+        fields.put(Names.RABBIT.getName(), new ArrayList<>(Arrays.asList(2d,1d,2d,0.45)));//150
+        fields.put(Names.MOUSE.getName(), new ArrayList<>(Arrays.asList(0.05,5d,1d,0.01)));//500
+        fields.put(Names.GOAT.getName(), new ArrayList<>(Arrays.asList(60d,1d,3d,10d)));//140
+        fields.put(Names.SHEEP.getName(), new ArrayList<>(Arrays.asList(70d,1d,3d,15d)));//140
+        fields.put(Names.BOAR.getName(), new ArrayList<>(Arrays.asList(400d,1d,2d,50d)));//50
+        fields.put(Names.BUFFALO.getName(), new ArrayList<>(Arrays.asList(700d,1d,3d,100d)));//10
+        fields.put(Names.DUCK.getName(), new ArrayList<>(Arrays.asList(1d,2d,4d,0.15)));//200
+        fields.put(Names.CATERPILLAR.getName(), new ArrayList<>(Arrays.asList(0.01,1d,1d,0d)));//1000
+        fields.put(Names.PLANT.getName(), new ArrayList<>(Arrays.asList(1d,2d,1d,1d)));//200
     }
 
     static {
@@ -127,5 +131,8 @@ public class Parametrs {
         icons.put(Names.DUCK.getName(),"\uD83E\uDD86");
         icons.put(Names.CATERPILLAR.getName(),"\uD83D\uDC1B");
         icons.put(Names.PLANT.getName(),"\uD83C\uDF3F");
+    }
+    public static Map<String, ArrayList<Double>> getFields() {
+        return fields;
     }
 }
